@@ -4,5 +4,5 @@ const orderResolver = require('./order.resolver');
 module.exports = [
     productResolver,
     orderResolver
-    //touts les resolvers
+    //touts les resolvers ...
 ]
