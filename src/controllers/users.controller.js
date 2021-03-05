@@ -2,16 +2,7 @@ const User = require('../models/user.model');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const config = require('../configs');
-const Joi = require('joi');
-
-
-const userSchemaValidation  = Joi.object({
-  firstName: Joi.string().required(),
-  email: Joi.string().email().required(),
-  //password: Joi.string().regex(hgg)
-  
-
-});
+import userValidationSchema from "../middlewares/validators/user.validation";
 
 exports.register = (req, res) => {
   let hashedPassword = bcrypt.hashSync(req.body.password, 10);
@@ -24,6 +15,13 @@ exports.register = (req, res) => {
     age: req.body.age,
     password: hashedPassword,
   });
+
+  const validation = userValidationSchema.validate(req.body);
+
+  console.log(validation);
+  if (validation.error) {
+      return res.status(400).send(validation.error);
+  }
 
   user
     .save()
