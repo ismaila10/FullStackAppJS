@@ -2,6 +2,16 @@ const User = require('../models/user.model');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const config = require('../configs');
+const Joi = require('joi');
+
+
+const userSchemaValidation  = Joi.object({
+  firstName: Joi.string().required(),
+  email: Joi.string().email().required(),
+  //password: Joi.string().regex(hgg)
+  
+
+});
 
 exports.register = (req, res) => {
   let hashedPassword = bcrypt.hashSync(req.body.password, 10);
