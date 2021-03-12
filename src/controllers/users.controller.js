@@ -86,7 +86,7 @@ exports.login = (req, res) => {
       });
     })
     .catch((err) => {
-      res.status(404).send(err);
+      res.status(404).send(err+"nop");
     });
 };
 
@@ -109,7 +109,7 @@ exports.getMe = (req, res) => {
     })
     .catch((err) => {
       return res.status(404).send({
-        message: err.message,
+        message: "dsd,fdkl"+err.message,
       });
     });
 };

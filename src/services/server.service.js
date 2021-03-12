@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const app = express();
 const config = require("../configs");
 const port = config.server.port;
@@ -17,6 +18,7 @@ const graphQlServer = new ApolloServer({
 graphQlServer.applyMiddleware({ app, path: "/graphql" });
 
 app.use(bodyParser.json());
+app.use(cors());
 
 app.use('/api/v1', apiRouter);
 
