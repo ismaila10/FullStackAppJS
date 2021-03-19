@@ -14,7 +14,7 @@ const graphQlServer = new ApolloServer({
   typeDefs : schema,
   resolvers
 })
-
+//iso
 graphQlServer.applyMiddleware({ app, path: "/graphql" });
 
 app.use(bodyParser.json());
